@@ -118,7 +118,6 @@ const MainPage = () => {
                       sx={{
                         p: 3,
                         borderRadius: 4,
-                        backgroundColor: isSmallScreen ? 'background.paper' : 'grey.100',
                         maxWidth: 600,
                         mx: isSmallScreen ? 'auto' : 0,
                       }}
