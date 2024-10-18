@@ -232,7 +232,7 @@ const UploadPublication = () => {
                                         <Error color='error' sx={{ fontSize: 40 }} />
                                         <Typography color="error">
                                             <b>
-                                                No PDF available. Your PDF file has not been uploaded. Uploading it is entirely up to you.
+                                                PDF file has not been uploaded.
                                             </b>
                                         </Typography>
                                     </Stack> : <><Stack width="50%" alignItems="center" justifyContent="center" spacing={1}>

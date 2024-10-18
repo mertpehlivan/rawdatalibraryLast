@@ -26,8 +26,9 @@ import EducationMainPage from '../pages/EducationPage'
 import ResearchInterestPage from "../pages/middlePage/ResearchInterestPage";
 import ResearchInterestMainPage from '../pages/ResearchInterestPage'
 import WebOfScienceCategoriesPage from "../pages/WebOfScienceCategoriesPage";
+import PrivacyPage from "../pages/PrivacyPage";
 export const nav = [
-    
+
     {
         path: "/",
         element: <MainPage />,
@@ -41,14 +42,14 @@ export const nav = [
         isPrivate: false
     },
     {
-        path:"/forget-password",
-        element: <ForgetPasswordPage/>,
+        path: "/forget-password",
+        element: <ForgetPasswordPage />,
         isMenu: false,
         isPrivate: false,
     },
     {
-        path:"/reset-password",
-        element: <ResetPasswordPage/>,
+        path: "/reset-password",
+        element: <ResetPasswordPage />,
         isMenu: false,
         isPrivate: false,
     },
@@ -70,7 +71,7 @@ export const nav = [
                 isMenu: true,
                 isPrivate: true
             },
-            
+
         ]
 
     },
@@ -79,7 +80,7 @@ export const nav = [
         element: <ProfilePage />,
         isMenu: true,
         isPrivate: true,
-        children:[
+        children: [
             {
                 path: "",
                 element: <PublicationPage />,
@@ -110,32 +111,32 @@ export const nav = [
         path: "/affiliation-edit",
         element: <AffiliationMainPage />,
         isMenu: true,
-        isPrivate: true, 
+        isPrivate: true,
     },
     {
         path: "/web-of-science-category-edit",
         element: <WebOfScienceCategoriesPage />,
         isMenu: true,
-        isPrivate: true, 
+        isPrivate: true,
     },
     {
         path: "/education-edit",
         element: <EducationMainPage />,
         isMenu: true,
-        isPrivate: true, 
+        isPrivate: true,
     },
     {
         path: "/research-interest-edit",
         element: <ResearchInterestMainPage />,
         isMenu: true,
-        isPrivate: true, 
+        isPrivate: true,
     },
     {
         path: "/researcher/:userId",
         element: <ProfilePublicPage />,
         isMenu: false,
         isPrivate: false,
-        children:[
+        children: [
             {
                 path: "",
                 element: <PublicationPage />,
@@ -170,7 +171,7 @@ export const nav = [
     },
     {
         path: "/edit-publication/:publicationId",
-        element: <PublicationEditPage  />,
+        element: <PublicationEditPage />,
         isMenu: true,
         isPrivate: true
     },
@@ -195,6 +196,18 @@ export const nav = [
     {
         path: "/accuracy",
         element: <AccuracyPage />,
+        isMenu: false,
+        isPrivate: false
+    },
+    {
+        path: "/privacy",
+        element: <PrivacyPage />,
+        isMenu: true,
+        isPrivate: true
+    },
+    {
+        path: "/privacy",
+        element: <PrivacyPage />,
         isMenu: false,
         isPrivate: false
     },

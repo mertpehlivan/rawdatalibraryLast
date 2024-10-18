@@ -56,10 +56,8 @@ const PostActionButton = ({ data, publicStatus = false }) => {
                         <Link to="/login">
                             <LoadingButton
                                 size="small"
-
                                 variant="outlined"
                                 startIcon={<PictureAsPdfTwoTone />}
-
                                 disabled={loading}
                             >View PDF</LoadingButton>
                         </Link>
@@ -75,25 +73,34 @@ const PostActionButton = ({ data, publicStatus = false }) => {
                         >
                             {loading ? 'Downloading...' : 'View PDF'}
                         </LoadingButton>
-                    ) : !(only == "PRIVATE") && (
+                    ) : (only == "PRIVATE" || only == "NOT_PDF") && (
+
+                        !data.areYouACoAuthor &&
                         <Button size="small" variant="outlined" startIcon={<MenuBook />}>
                             Request Full-text
                         </Button>
-                    )}
-                    {publicStatus ?<Button href='/login' size="small" variant="contained" startIcon={<ShoppingBasket />}>
-                        Purchase Data
-                    </Button>: <Button size="small" variant="contained" startIcon={<ShoppingBasket />}>
-                        Purchase Data
-                    </Button>}
 
+                    )}
+                    {publicStatus ?
+                        <Button href='/login' size="small" variant="contained" startIcon={<ShoppingBasket />}>
+                            Purchase Data
+                        </Button>
+                        :
+                        (!data.areYouACoAuthor &&
+                            <Button size="small" variant="contained" startIcon={<ShoppingBasket />}>
+                                Purchase Data
+                            </Button>)
+                    }
                 </ButtonGroup>
-                {publicStatus ?<IconButton href='/login'>
-                    <More/>
-                </IconButton> : <PostMoreToggleButton
-                    data={data}
-                    userCoAuthorInvitation={data.userCoAuthorInvitation}
-                    publicationId={data.publication.id}
-                />}
+                {publicStatus ?
+                    <IconButton href='/login'>
+                        <More />
+                    </IconButton> :
+                    (!data.areYouACoAuthor && <PostMoreToggleButton
+                        data={data}
+                        userCoAuthorInvitation={data.userCoAuthorInvitation}
+                        publicationId={data.publication.id}
+                    />)}
             </Stack>
 
             {/* Snackbar for error handling */}

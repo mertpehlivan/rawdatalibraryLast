@@ -30,6 +30,7 @@ import PubMedIcon from '../../assets/pubmed.png';
 import { useUserContext } from '../../auth/AuthProvider';
 import { Link, useParams } from 'react-router-dom';
 import LanguageIcon from '@mui/icons-material/Language';
+import WorldIcon from '../../assets/world.jpg'
 import { Add, Edit } from '@mui/icons-material';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -69,10 +70,10 @@ const predefinedLinks = [
     enum: "UNIVERSITY_RESEARCH_TOOL",
     label: 'University Research Tool',
     url: 'https://xxxxx.edu.tr',
-    icon: null
+    icon: WorldIcon
   },
 ];
-const ResearcherContact = ({publicStatus = false}) => {
+const ResearcherContact = ({ publicStatus = false }) => {
   const [open, setOpen] = useState(false);
   const [openListDialog, setOpenListDialog] = useState(false);
   const [selectedLabel, setSelectedLabel] = useState('');
@@ -114,10 +115,10 @@ const ResearcherContact = ({publicStatus = false}) => {
     };
     if (!publicStatus) {
       fetchLinks();
-    }else{
+    } else {
       fetchPublicLinks()
     }
-    
+
   }, [userId, token]);
 
   const handleClickOpen = () => {
@@ -216,11 +217,25 @@ const ResearcherContact = ({publicStatus = false}) => {
               sx={{ backgroundColor: '#f5f5f5', cursor: 'pointer', borderRadius: 3, mb: 0.5 }}
             >
               <ListItemIcon>
-                {predefinedLinks.find(pre => pre.enum === link.linkType && link.type != "UNIVERSITY_RESEARCH_TOOL") ?
-                  <img style={{ width: 24, height: 24, marginRight: 8 }} src={predefinedLinks.find(pre => pre.enum === link.linkType && link.type != "UNIVERSITY_RESEARCH_TOOL")?.icon} alt="" />
-                  : <LanguageIcon />}
+                {(() => {
+                  const matchedLink = predefinedLinks.find(pre => pre.enum === link.linkType);
+                  return matchedLink ? (
+                    <img
+                      style={{ width: 24, height: 24, marginRight: 8 }}
+                      src={matchedLink.icon}
+                      alt={matchedLink.enum}
+                    />
+                  ) : (
+                    <LanguageIcon />
+                  );
+                })()}
               </ListItemIcon>
-              <Link target='_blank' to={link.url}><ListItemText primary={link.label} secondary={link.url?.slice(0,60)+"..."} /></Link>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                <ListItemText
+                  primary={link.label}
+                  secondary={link.url?.length > 60 ? link.url.slice(0, 60) + "..." : link.url}
+                />
+              </a>
 
             </ListItem>
           ))
@@ -287,7 +302,7 @@ const ResearcherContact = ({publicStatus = false}) => {
             ) : linksData.length > 0 ? (
               linksData.map((link, index) => {
                 // Use find to get the link object
-                
+
                 return (
                   <ListItem
                     key={index}
@@ -295,7 +310,7 @@ const ResearcherContact = ({publicStatus = false}) => {
                   >
                     <ListItemIcon>
                       {
-                        predefinedLinks.find(pre => pre.enum === link.linkType && link.type != "UNIVERSITY_RESEARCH_TOOL") ?
+                        predefinedLinks.find(pre => pre.enum === link.linkType) ?
                           <img style={{ width: 24, height: 24, marginRight: 8 }} src={predefinedLinks.find(pre => pre.enum === link.linkType && link.type != "UNIVERSITY_RESEARCH_TOOL")?.icon} alt="" />
                           : <LanguageIcon />
                       }

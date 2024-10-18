@@ -82,7 +82,6 @@ const ResetPasswordPage = () => {
 
     return (
         <>
-            <NoAuthBar />
             <Container sx={{ mt: 3 }} maxWidth="sm">
                 <Paper elevation={3} style={{ padding: '20px', borderRadius: 5 }}>
                     <Stack spacing={2}>

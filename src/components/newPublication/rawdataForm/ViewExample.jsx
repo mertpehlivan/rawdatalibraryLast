@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { InsertDriveFile, Description, Download } from '@mui/icons-material';
-import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Divider, List, ListItem, ListItemIcon, ListItemText, CircularProgress } from '@mui/material';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const data = {
   "Experimental test result": [
@@ -35,34 +35,39 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function ViewExample({ handleClickOpen, handleClose, open, setOpen }) {
+  const [loadingFile, setLoadingFile] = React.useState(null); // Track the loading file
+
   const handleDownload = async (file) => {
+    setLoadingFile(file.name); // Set the loading file
     if (file) {
       try {
-        // Spring Boot backend'den dosyayı almak için bir istek gönderin
-        const response = await fetch(file.url); // URL, backend'den dosyayı getiren endpoint olmalı
+        // Request the file from the Spring Boot backend
+        const response = await fetch(file.url);
 
         if (!response.ok) {
-          throw new Error('Dosya indirilemedi');
+          throw new Error('Failed to download the file');
         }
 
-        // Yanıtı blob formatında alın
+        // Get the response as a blob
         const blob = await response.blob();
 
-        // Blob için bir URL oluşturun
+        // Create a URL for the blob
         const url = URL.createObjectURL(blob);
 
-        // İndirme linki oluşturun
+        // Create a download link
         const link = document.createElement('a');
         link.href = url;
-        link.download = file.name; // İndirilecek dosyanın ismi
+        link.download = file.name;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
 
-        // URL'yi serbest bırakın
+        // Release the URL
         URL.revokeObjectURL(url);
       } catch (error) {
-        console.error('Hata:', error);
+        console.error('Error:', error);
+      } finally {
+        setLoadingFile(null); // Reset loading state
       }
     }
   };
@@ -96,11 +101,22 @@ export default function ViewExample({ handleClickOpen, handleClose, open, setOpe
               <div key={category}>
                 <List subheader={<li>{category}</li>} style={{ marginBottom: '16px' }}>
                   {data[category].map((file, idx) => (
-                    <ListItem button key={idx} onClick={() => handleDownload(file)}>
-                      <ListItemIcon>{file.icon}</ListItemIcon>
+                    <ListItem
+                      button
+                      key={idx}
+                      onClick={() => handleDownload(file)}
+                      disabled={loadingFile === file.name} // Disable if currently loading
+                    >
+                      <ListItemIcon>
+                        {file.icon}
+                      </ListItemIcon>
                       <ListItemText primary={file.name} />
                       <ListItemIcon>
-                        <Download/>
+                        {loadingFile === file.name ? (
+                          <CircularProgress size={24} />
+                        ) : (
+                          <Download />
+                        )}
                       </ListItemIcon>
                     </ListItem>
                   ))}

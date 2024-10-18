@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, Chip, Divider, Grid, Stack, TextField, Typography, Checkbox } from '@mui/material';
-import { AddAPhoto, ArrowDownward, ArrowUpward, CheckBox, Delete, Edit, Save } from '@mui/icons-material';
+import { AddAPhoto, AddBox, AdsClick, AdsClickOutlined, ArrowDownward, ArrowUpward, CheckBox, Delete, Edit, RawOnRounded, Save } from '@mui/icons-material';
 import { useNewPublicationContext } from '../../../context/NewPublicationProvider';
 import { useSpring, animated } from 'react-spring';
 import CreateRawData from './CreateRawData'
@@ -227,9 +227,9 @@ export default function GetRawData({ onlyShow = false, order }) {
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
-                        startIcon={<AddAPhoto />}
+                        startIcon={<AddBox />}
                       >
-                        Upload Raw Data
+                        Upload Raw Data File
                         <VisuallyHiddenInput
                           name='rawdata'
                           type="file"
@@ -340,7 +340,7 @@ export default function GetRawData({ onlyShow = false, order }) {
                       onClick={(e) => handleDownload(e, row)}
                       style={{ cursor: 'pointer', color: 'blue' }}
                     >
-                      {row.rawdata.name}
+                      {row.rawdata.name} (Click view) <AdsClickOutlined />
                     </Typography>
                   </StyledTableCell>
                   <StyledTableCell align="center">
@@ -350,7 +350,7 @@ export default function GetRawData({ onlyShow = false, order }) {
                       onClick={(e) => handleDownload(e, row)}
                       style={{ cursor: 'pointer', color: 'blue' }}
                     >
-                      {row.previewImage.name}
+                      {row.previewImage.name} (Click view) <AdsClickOutlined />
                     </Typography>
                   </StyledTableCell>
                   <StyledTableCell align="center">

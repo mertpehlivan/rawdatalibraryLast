@@ -76,7 +76,7 @@ const PostRawData = ({ rawData, onDataCountChange, publicStatus = false }) => {
     <>
       <Grid container spacing={1}>
         <Stack width="100%" spacing={1}>
-          {publicStatus ?(rawData.slice(0, 2).map((data) => (
+          {publicStatus ?(rawData.slice(0, 1).map((data) => (
             <Grid item xs={12} key={data.id} p={1} borderRadius={3} sx={{":hover":{bgcolor:"#e1e1e1"}}}>
               <Stack alignItems="center" justifyContent="space-between" spacing={1.5} direction="row">
                 <Box width={30} height={30}>

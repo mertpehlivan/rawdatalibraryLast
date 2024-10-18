@@ -8,7 +8,7 @@ function Footer() {
                 <Typography>©2024 Raw Data Library</Typography>
                 <Stack direction="row" spacing={1}>
                     <Link to="/terms" target='_blank'><Typography>Terms</Typography></Link>
-                    <Link to="/privcy" target='_blank'><Typography>Privacy</Typography></Link>
+                    <Link to="/privacy" target='_blank'><Typography>Privacy</Typography></Link>
                     <Link to="/faq" target='_blank'><Typography>Faq</Typography></Link>
                 </Stack>
               

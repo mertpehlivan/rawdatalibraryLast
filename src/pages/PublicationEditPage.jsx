@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
 import { getPdfFile, getPublicationEdit, getRawDataFile } from '../services/publicationService';
 import { useUserContext } from '../auth/AuthProvider';
-import { Container, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
 import PublicationInfo from '../components/publicationEdit/PublicationInfo';
 import ResearchersList from '../components/publicationEdit/ResearchersList'
 import PDFInfo from '../components/publicationEdit/PdfInfo';
@@ -13,6 +13,7 @@ import PublicationEdit from '../components/publicationEdit/edit/PublicationEdit'
 import ResearchersListEdit from '../components/publicationEdit/edit/ResearchersListEdit';
 import RawDataInfoEdit from '../components/publicationEdit/edit/RawDataInfoEdit';
 import PDFInfoEdit from '../components/publicationEdit/edit/PDFInfoEdit';
+import { ArrowBack, Delete } from '@mui/icons-material';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const PublicationEditPage = () => {
   const { publicationId } = useParams(); // Get publicationId from URL parameters
@@ -21,7 +22,7 @@ const PublicationEditPage = () => {
   const [error, setError] = useState(null);
   const { token } = useUserContext();
   const [edit, setEdit] = useState(null)
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("PublicationEditPage", publicationId)
@@ -87,7 +88,21 @@ const PublicationEditPage = () => {
 
 
     <Container sx={{ mt: 2 }}>
+      <Paper sx={{ p: 2,mb:1 }}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Button onClick={() => navigate(-1)} startIcon={<ArrowBack />}>
+            Back
+          </Button>
+          <Button onClick={() => navigate(-1)} variant='contained' color='error' startIcon={<Delete />}>
+            Delete Publication
+          </Button>
+        </Stack>
+
+      </Paper>
       {edit == null && <Stack spacing={2}>
+
+
+
         <PublicationInfo
           handleEdit={handleEdit}
           publication={{ data: data.publication }}
@@ -122,7 +137,7 @@ const PublicationEditPage = () => {
         edit == "RESEARCHERS_LIST" && <ResearchersListEdit authors={data.authors} type={data.type} />
       }
       {
-        edit == "PDF_INFO" && <PDFInfoEdit  pdfDownload={downloadPdf} pdfFileResponse={data.pdfFileResponse} type={data.type} />
+        edit == "PDF_INFO" && <PDFInfoEdit pdfDownload={downloadPdf} pdfFileResponse={data.pdfFileResponse} type={data.type} />
 
       }
       {

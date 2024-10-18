@@ -80,7 +80,7 @@ const NewPublicationProvider = ({ children }) => {
             handleValidation(() => {
                 return Object.keys(updatedPublication.data).every(key => {
                     // Check if the key is not 'issue' or 'doi'
-                    if (key !== "isbn" && key !== "doi" && key !== "completedDate" && key !=="linkOfTheConference" && key !== "references" && key !== "issue") {
+                    if (key !== "isbn" && key !== "doi" && key !== "completedDate" && key !=="linkOfTheConference" && key !== "references" && key !== "issue" && key !== "indexing") {
                         // Return false if any required field is empty
                         if (updatedPublication.data[key].trim() === '') return false;
                     }

@@ -82,17 +82,17 @@ const MainPage = () => {
     <Stack spacing={2}>
       <Stack spacing={3} sx={{ animation: `${fadeIn} 2s ease-in-out` }}>
         {process.env.PUBLIC_URL.toString()}
-        <Container maxWidth >
+        <Container maxWidth>
           <div id="back-to-top-anchor" />
-          <Grid container sx={{ mt: 3 }} alignItems="center" mb={8}>
+          <Grid container sx={{ mt: 3 }} alignItems="center" mb={3}>
             <Grid item xs={12}>
-              <Grid container spacing={2}>
+              <Grid container spacing={3}>
                 <Grid item md={5} sm={12}>
                   <Stack
-                    mt={isSmallScreen ? 0:15}
-                    height={isSmallScreen ?" 50vh" : "100vh"}
+                    mt={isSmallScreen ? 0 : 15}
+                    height={isSmallScreen ? "50vh" : "20vh"}
                     mb={2}
-                    spacing={1}
+                    spacing={3}
                     sx={{
                       justifyContent: isSmallScreen ? 'center' : 'flex-start',
                       alignItems: isSmallScreen ? 'center' : 'flex-start',
@@ -108,59 +108,101 @@ const MainPage = () => {
                     <Typography
                       fontFamily="Times New Roman, sans-serif"
                       variant={isSmallScreen ? 'h5' : 'h4'}
+                      sx={{ textAlign: isSmallScreen ? 'center' : 'left' }}
                     >
                       THE NEW FACE OF THE ACADEMY
                     </Typography>
-                    <Typography
-                      mt={5}
-                      alignItems="center"
-                      fontFamily="Times New Roman, sans-serif"
-                      variant="h5"
-                      maxWidth={600}
-                    >
-                      As knowledge grows through sharing, raw data represents the purest form of this growth.
-                    </Typography>
-                    <Button size='large' href='/signup' fullWidth variant="contained">
-                      JOIN FOR FREE
-                    </Button>
-                  </Stack>
 
+                    <Paper
+                      elevation={3}
+                      sx={{
+                        p: 3,
+                        borderRadius: 4,
+                        backgroundColor: isSmallScreen ? 'background.paper' : 'grey.100',
+                        maxWidth: 600,
+                        mx: isSmallScreen ? 'auto' : 0,
+                      }}
+                    >
+                      <Typography
+                        fontFamily="Times New Roman, sans-serif"
+                        variant="h4"
+                        color="primary.main"
+                        mb={2}
+                        sx={{ textAlign: 'center' }}
+                      >
+                        Turn Your Data Into Income
+                      </Typography>
+                      <Typography
+                        fontFamily="Times New Roman, sans-serif"
+                        variant="h5"
+                        color="text.secondary"
+                        mb={4}
+                        sx={{ textAlign: 'center' }}
+                      >
+                        Researchers who upload their raw data can generate income by selling or sharing it with peers and institutions globally.
+                      </Typography>
+                      <Button
+                        size="large"
+                        href="/signup"
+                        fullWidth
+                        variant="contained"
+                        sx={{
+                          backgroundColor: 'primary.main',
+                          '&:hover': {
+                            backgroundColor: 'primary.dark',
+                          },
+                        }}
+                      >
+                        Monetize Your Research Data
+                      </Button>
+                    </Paper>
+                  </Stack>
                 </Grid>
-                {!isSmallScreen && <Grid item md={7} sm={12}>
-                  <MainPagePost />
-                </Grid>}
+
+                {!isSmallScreen && (
+                  <Grid item md={7} sm={12}>
+                    <MainPagePost />
+                  </Grid>
+                )}
               </Grid>
 
               <Grid
-                mt={2}
-                maxWidth={600}
                 container
-                spacing={1}
+                spacing={2}
+                mt={4}
                 justifyContent={!isSmallScreen ? 'center' : 'flex-start'}
                 alignItems={!isSmallScreen ? 'center' : 'flex-start'}
+                sx={{
+                  maxWidth: 600,
+                  mx: isSmallScreen ? 'auto' : 0,
+                }}
               >
                 <Grid
                   item
                   xs={12}
-                  justifyContent={!isSmallScreen ? 'center' : 'flex-start'}
-                  alignItems={!isSmallScreen ? 'center' : 'flex-start'}
-                  borderRadius={3}
-                  p={3}
+                  sx={{
+                    borderRadius: 3,
+                    p: 3,
+                    backgroundColor: 'background.paper',
+                  }}
                 >
-
+                  {/* Additional content can go here */}
                 </Grid>
 
                 {!isSmallScreen && (
                   <Grid
                     item
                     md={2}
-                    justifyContent="center"
-                    alignItems="center"
-                    borderRadius={3}
-                    spacing={2}
-                    p={3}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      p: 3,
+                      borderRadius: 3,
+                      backgroundColor: 'grey.100',
+                    }}
                   >
-
+                    {/* Additional sidebar content */}
                   </Grid>
                 )}
               </Grid>
