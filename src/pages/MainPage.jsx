@@ -165,46 +165,7 @@ const MainPage = () => {
                 )}
               </Grid>
 
-              <Grid
-                container
-                spacing={2}
-                mt={4}
-                justifyContent={!isSmallScreen ? 'center' : 'flex-start'}
-                alignItems={!isSmallScreen ? 'center' : 'flex-start'}
-                sx={{
-                  maxWidth: 600,
-                  mx: isSmallScreen ? 'auto' : 0,
-                }}
-              >
-                <Grid
-                  item
-                  xs={12}
-                  sx={{
-                    borderRadius: 3,
-                    p: 3,
-                    backgroundColor: 'background.paper',
-                  }}
-                >
-                  {/* Additional content can go here */}
-                </Grid>
-
-                {!isSmallScreen && (
-                  <Grid
-                    item
-                    md={2}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      p: 3,
-                      borderRadius: 3,
-                      backgroundColor: 'grey.100',
-                    }}
-                  >
-                    {/* Additional sidebar content */}
-                  </Grid>
-                )}
-              </Grid>
+              
             </Grid>
           </Grid>
         </Container>
