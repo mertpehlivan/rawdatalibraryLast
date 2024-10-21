@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
 import { deletePublication, getPdfFile, getPublicationEdit, getRawDataFile } from '../services/publicationService';
 import { useUserContext } from '../auth/AuthProvider';
-import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper, Stack, Typography } from '@mui/material';
 import PublicationInfo from '../components/publicationEdit/PublicationInfo';
 import ResearchersList from '../components/publicationEdit/ResearchersList'
 import PDFInfo from '../components/publicationEdit/PdfInfo';

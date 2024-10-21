@@ -31,13 +31,7 @@ const SearchBar = ({ query, onQueryChange, onSearch }) => {
                 },
                 mt: 2,
             }}
-            InputProps={{
-                endAdornment: (
-                    <IconButton type="submit" aria-label="search" onClick={() => onSearch(query)}>
-                        <SearchIcon sx={{ color: 'primary.main' }} />
-                    </IconButton>
-                ),
-            }}
+           
         />
     );
 };

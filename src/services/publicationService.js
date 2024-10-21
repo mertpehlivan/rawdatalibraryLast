@@ -204,3 +204,29 @@ export const searchPublicationsByTitle = async (token, title, page = 0, size = 1
         throw error; // Rethrow the error for further handling if needed
     }
 };
+export const getAllPublicationsByYear = async (token,userId) => {
+    try {
+        const response = await axios.get(`${baseUrl}/api/v1/publication/${userId}/years`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        return response.data; // Dönüş verisi burada
+    } catch (error) {
+        console.error('Error fetching publications by year:', error);
+        throw error; // Hata fırlatıyoruz, bu şekilde hatayı yönetebilirsiniz
+    }
+};
+export const getCoAuthorLastPublications = async (token, userId) => {
+    try {
+        const response = await axios.get(`${baseUrl}/api/v1/publication/co-authors/${userId}/last-publications`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response.data; // Return the list of AuthorResponse
+    } catch (error) {
+        console.error('Error fetching co-author last publications:', error);
+        throw error; // Throw the error to be handled in the component
+    }
+};

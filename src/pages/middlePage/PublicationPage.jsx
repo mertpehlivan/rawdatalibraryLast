@@ -112,9 +112,22 @@ const PublicationPage = () => {
     setCurrentPage(1);
   };
 
-  const getYearFromDate = (date) => {
-    return date ? new Date(date).getFullYear() : 'Unknown';
-  };
+  function getYearFromDate(dateString) {
+    // Tarih stringini kontrol et
+    if (typeof dateString !== 'string' || !dateString) {
+         return
+    }
+
+    // Tarih stringini parçala
+    const parts = dateString.split('-');
+
+    // Yıl kısmını döndür
+    if (parts.length === 3) {
+        return parts[0]; // Yıl kısmı
+    } else {
+      return;
+    }
+}
 
   return (
     <Grid container spacing={2}>
@@ -212,7 +225,7 @@ const PublicationPage = () => {
                               },
                             }}
                           >
-                            {selectedType} - {pub.title || 'Untitled'}
+                            {pub.title || 'Untitled'}
                           </Link>
                         }
                         secondary={pub.summary || 'No summary available'}

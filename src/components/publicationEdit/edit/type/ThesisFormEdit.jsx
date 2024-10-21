@@ -36,7 +36,7 @@ const languages = [
     "Vietnamese", "Yoruba"
 ];
 
-const ThesisFormEdit = ({ publication,type }) => {
+const ThesisFormEdit = ({ publication, type }) => {
     const { publicationId } = useParams();
     const { token } = useUserContext();
     const DegreeEnum = {
@@ -66,9 +66,22 @@ const ThesisFormEdit = ({ publication,type }) => {
         setInitialData(publication);
     }, [publication]);
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData(prevState => ({ ...prevState, [name]: value }));
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        // Eğer ay-yıl formatında bir girişse, '01' gününü ekle
+        if (name === 'month') {
+            const formattedDate = `${value}-01`;  // 'YYYY-MM' formatını 'YYYY-MM-DD' formatına çevir
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: formattedDate  // Tarihi 'YYYY-MM-DD' formatında sakla
+            }));
+        } else {
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value
+            }));
+        }
     };
 
     const formatDate = (dateString) => {
@@ -184,7 +197,7 @@ const ThesisFormEdit = ({ publication,type }) => {
                                     fullWidth
                                     label="Month-Year"
                                     name="month"
-                                    value={formatDate(formData.month)}
+                                    value={formData.month ? formData.month.substring(0, 7) : ""}  // 'YYYY-MM-DD' den sadece 'YYYY-MM' göster
                                     onChange={handleChange}
                                 />
                             </Grid>

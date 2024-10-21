@@ -11,6 +11,7 @@ import SkeletonLoadingProfileBar from '../components/profile/SkeletonLoadingProf
 import SkeletonLoadingBio from '../components/profile/SkeletonLoadingBio';
 import PublicationTable from '../components/profile/PublicationTable';
 import ProfilePageViewRouter from '../components/profile/ProfilePageViewRouter';
+import CoAuthor from '../components/profile/CoAuthor';
 
 const ProfilePage = () => {
     const [profileUser, setProfileUser] = useState(null); // Renamed state
@@ -82,6 +83,7 @@ const ProfilePage = () => {
                                 <Bio initialBio={profileUser.bio} /> // Updated reference to new state name
                             )}
                             <ResearcherContact />
+                            <CoAuthor/>
                         </Stack>
                     </Grid>}
                 <Grid item md={isPublicationsPath ? 12 : 8} sm={12}>

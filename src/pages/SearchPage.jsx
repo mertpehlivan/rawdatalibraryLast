@@ -28,7 +28,6 @@ const SearchPage = () => {
     const [loading, setLoading] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const [firstSearch, setFirstSearch] = useState(true);
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -37,19 +36,22 @@ const SearchPage = () => {
                     try {
                         const imageBlob = await getProfileImage(author.id);
                         return { id: author.id, url: URL.createObjectURL(imageBlob) };
-                    } catch (error) {
+                    } catch {
                         return { id: author.id, url: fallbackImage };
                     }
                 })
             );
+
             const newImageUrls = urls.reduce((acc, img) => ({ ...acc, [img.id]: img.url }), {});
             setImageUrls(newImageUrls);
         };
 
-        if (searchType === 'researcher') fetchImages();
+        if (searchType === 'researcher' && results.length) {
+            fetchImages();
+        }
     }, [results, searchType]);
 
-    const handleSearch = async (query, page = 0) => {
+    const handleSearch = async (page = 0) => {
         if (!query) return;
         setLoading(true);
         try {
@@ -67,7 +69,6 @@ const SearchPage = () => {
                 response = await searchPublicationsByTitle(token, query, page, 5);
                 setResults(response.publications || []);
                 setTotalPages(response.totalPages);
-                // Toplam sayfa sayısını burada ayarla
             } else if (searchType === 'rawData') {
                 response = await axios.get(`/api/rawdata?search=${query}`, config);
                 setResults(response.data || []);
@@ -84,7 +85,7 @@ const SearchPage = () => {
 
     const handlePageChange = (value) => {
         setCurrentPage(value);
-        handleSearch(query, value - 1); // Yeni sayfa numarasını kullanarak arama yap
+        handleSearch(value - 1); // Yeni sayfa numarasını kullanarak arama yap
     };
 
     const handleTypeChange = (newType) => {
@@ -93,21 +94,21 @@ const SearchPage = () => {
         setResults([]);
         setTotalPages(0);
         setCurrentPage(1);
-        setFirstSearch(true);
     };
 
     const handleSearchButtonClick = () => {
-        handleSearch(query);
+        handleSearch();
     };
 
     return (
         <Paper elevation={3} sx={{ padding: 2, borderRadius: 5, height: "80vh" }}>
             <Typography variant="h6" sx={{ marginBottom: 1, color: 'primary.main' }}>Search</Typography>
+
             <SearchTypeToggle searchType={searchType} onChange={handleTypeChange} />
             <Stack direction="row" spacing={1}>
                 <SearchBar query={query} onQueryChange={setQuery} />
                 <Button
-                    startIcon={<Search/>}
+                    startIcon={<Search />}
                     variant="contained"
                     color="primary"
                     onClick={handleSearchButtonClick}
@@ -120,14 +121,18 @@ const SearchPage = () => {
             {loading ? (
                 <CircularProgress />
             ) : (
-                <SearchResults
-                    searchType={searchType}
-                    results={results}
-                    imageUrls={imageUrls}
-                    fallbackImage={fallbackImage}
-                />
+                results.length > 0 ?
+                    <SearchResults
+                        searchType={searchType}
+                        results={results}
+                        imageUrls={imageUrls}
+                        fallbackImage={fallbackImage}
+                    /> :
+                    <Typography variant="h6" mt={2}>
+                        Please enter your search query above to find researchers, publications, or raw data.
+                    </Typography>
             )}
-            {totalPages > 0 && (
+            {!loading && totalPages > 0 && (
                 <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                     <PaginationComponent totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
                 </Stack>
