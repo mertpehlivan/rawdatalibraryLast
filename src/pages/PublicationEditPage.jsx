@@ -23,7 +23,15 @@ const PublicationEditPage = () => {
   const { token } = useUserContext();
   const [edit, setEdit] = useState(null)
   const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
 
+  const handleClickOpen = () => {
+      setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+      setOpenDialog(false);
+  };
   useEffect(() => {
     console.log("PublicationEditPage", publicationId)
     const fetchPublication = async () => {
@@ -101,11 +109,26 @@ const PublicationEditPage = () => {
           <Button onClick={() => navigate(-1)} startIcon={<ArrowBack />}>
             Back
           </Button>
-          <Button onClick={handleDeletePublication} variant='contained' color='error' startIcon={<Delete />}>
+          <Button onClick={handleClickOpen} variant='contained' color='error' startIcon={<Delete />}>
             Delete Publication
           </Button>
         </Stack>
-
+        <Dialog open={openDialog} onClose={handleClose}>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete this publication? This action cannot be undone.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleDeletePublication} color="error">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Paper>
       {edit == null && <Stack spacing={2}>
 
