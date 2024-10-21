@@ -109,6 +109,20 @@ export const getRawDataFile = async (token, rawDataId) => {
         throw error;
     }
 }
+export const deletePublication = async (token, publicationId) => {
+    try {
+        const response = await axios.delete(`${baseUrl}/api/v1/publication/${publicationId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        return response.data; // "Publication successfully deleted"
+    } catch (error) {
+        console.error('Error deleting publication:', error);
+        throw error;
+    }
+};
 export const getPublicationEdit = async (token, publicationId) => {
     try {
         const response = await axios.get(`${baseUrl}/api/v1/publication/edit-publication/${publicationId}`, {
@@ -170,5 +184,23 @@ export const getProfilePublications = async (token, userId) => {
     } catch (error) {
         console.error('Error fetching profile publications:', error);
         throw error;
+    }
+};
+export const searchPublicationsByTitle = async (token, title, page = 0, size = 10) => {
+    try {
+        const response = await axios.get(`${baseUrl}/api/v1/publication/search`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            params: {
+                title: title,
+                page: page, // Add page parameter
+                size: size, // Add size parameter
+            },
+        });
+        return response.data; // Return the publication data from the response
+    } catch (error) {
+        console.error('Error searching publications by title:', error);
+        throw error; // Rethrow the error for further handling if needed
     }
 };

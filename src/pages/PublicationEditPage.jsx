@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
-import { getPdfFile, getPublicationEdit, getRawDataFile } from '../services/publicationService';
+import { deletePublication, getPdfFile, getPublicationEdit, getRawDataFile } from '../services/publicationService';
 import { useUserContext } from '../auth/AuthProvider';
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
 import PublicationInfo from '../components/publicationEdit/PublicationInfo';
@@ -48,6 +48,14 @@ const PublicationEditPage = () => {
     setEdit(type)
   }
 
+  const handleDeletePublication = async () => {
+    deletePublication(token, publicationId).then(() => {
+      navigate("/")
+    }).catch((e) => {
+      console.log(e)
+    });
+
+  }
 
   const downloadPdf = async () => {
     setLoading(true);
@@ -88,12 +96,12 @@ const PublicationEditPage = () => {
 
 
     <Container sx={{ mt: 2 }}>
-      <Paper sx={{ p: 2,mb:1 }}>
+      <Paper sx={{ p: 2, mb: 1 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Button onClick={() => navigate(-1)} startIcon={<ArrowBack />}>
             Back
           </Button>
-          <Button onClick={() => navigate(-1)} variant='contained' color='error' startIcon={<Delete />}>
+          <Button onClick={handleDeletePublication} variant='contained' color='error' startIcon={<Delete />}>
             Delete Publication
           </Button>
         </Stack>

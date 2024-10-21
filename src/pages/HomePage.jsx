@@ -4,6 +4,7 @@ import CurretUserBox from '../components/homePage/CurretUserBox'
 import { Outlet } from 'react-router-dom';
 import { BusinessCenter, DeveloperMode, Info } from '@mui/icons-material';
 import InfoIcon from '@mui/icons-material/Info';
+import FilterMenu from '../components/homePage/FilterMenu';
 
 const HomePage = () => {
     return (
@@ -12,7 +13,11 @@ const HomePage = () => {
             <Stack pt={1} >
                 <Grid container spacing={1}>
                     <Grid item sm={12} md={2.5}>
-                        <CurretUserBox />
+                        <Stack spacing={1}>
+                            <CurretUserBox />
+                            <FilterMenu />
+                        </Stack>
+
                     </Grid>
                     <Grid item sm={12} md={7}>
                         <Outlet />
@@ -32,9 +37,9 @@ const HomePage = () => {
                                         <Button>See Detail</Button>
                                     </Stack>
                                 </Stack>
-                                <Divider sx={{mb:1}}/>
+                                <Divider sx={{ mb: 1 }} />
                                 <Stack direction="row" spacing={1}>
-                                    <DeveloperMode color='info'/>
+                                    <DeveloperMode color='info' />
                                     <Typography>
                                         We are working on a comprehensive payment system for RDL members. We are so sorry for the delay. The payment system is planned to be online end of December.
                                         Please note that researchers can upload their raw data during the improvement of the payment system.

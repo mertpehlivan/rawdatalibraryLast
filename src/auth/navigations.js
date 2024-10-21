@@ -14,10 +14,11 @@ import WhatIsJournalPage from '../pages/WhatIsJournelPage'
 import TermsPage from "../pages/TermsPage";
 import AccuracyPage from '../pages/AccuracyPage'
 import FaqPage from '../pages/FaqPage'
-import ProfilePage from "../pages/ProfilePage";
+import ProfileMainPage from "../pages/ProfilePage";
 import ProfilePublicPage from "../pages/ProfilePublicPage";
 import ForgetPasswordPage from "../pages/ForgetPasswordPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
+import ProfilePage from '../pages/middlePage/ProfilePage'
 import PublicationPage from '../pages/middlePage/PublicationPage'
 import AffiliationPage from "../pages/middlePage/AffiliationPage";
 import EducationPage from "../pages/middlePage/EducationPage";
@@ -27,6 +28,7 @@ import ResearchInterestPage from "../pages/middlePage/ResearchInterestPage";
 import ResearchInterestMainPage from '../pages/ResearchInterestPage'
 import WebOfScienceCategoriesPage from "../pages/WebOfScienceCategoriesPage";
 import PrivacyPage from "../pages/PrivacyPage";
+import SearchPage from "../pages/SearchPage";
 export const nav = [
 
     {
@@ -71,18 +73,31 @@ export const nav = [
                 isMenu: true,
                 isPrivate: true
             },
+            {
+                path: "/search",
+                element: <SearchPage />,
+                isMenu: true,
+                isPrivate: true
+            },
 
         ]
 
     },
     {
         path: "/researcher/:userId",
-        element: <ProfilePage />,
+        element: <ProfileMainPage />,
         isMenu: true,
         isPrivate: true,
         children: [
+
             {
                 path: "",
+                element: <ProfilePage />,
+                isMenu: true,
+                isPrivate: true
+            },
+            {
+                path: "publications",
                 element: <PublicationPage />,
                 isMenu: true,
                 isPrivate: true
@@ -139,7 +154,7 @@ export const nav = [
         children: [
             {
                 path: "",
-                element: <PublicationPage />,
+                element: <ProfilePage />,
                 isMenu: false,
                 isPrivate: false
             },

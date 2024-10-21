@@ -19,10 +19,10 @@ const ProfilePage = () => {
     const [publicationsLoading, setPublicationsLoading] = useState(true);
     const [publications, setPublications] = useState([]);
     const [error, setError] = useState(null);
-    const { token,user } = useUserContext();
+    const { token, user } = useUserContext();
     const { userId } = useParams();
     const [selectedOption, setSelectedOption] = useState('publication');
-
+    const isPublicationsPath = window.location.pathname.endsWith(`/researcher/${userId}/publications`);
     useEffect(() => {
         const fetchUserData = async () => {
             setProfileBarLoading(true);
@@ -63,7 +63,7 @@ const ProfilePage = () => {
                         {profileBarLoading ? (
                             <SkeletonLoadingProfileBar />
                         ) : profileUser ? ( // Updated reference to new state name
-                            <ProfileBar currentUser ={user} user={profileUser} /> // Updated reference to new state name
+                            <ProfileBar currentUser={user} user={profileUser} /> // Updated reference to new state name
                         ) : (
                             <Typography align="center">User not found.</Typography>
                         )}
@@ -73,18 +73,19 @@ const ProfilePage = () => {
                 <Grid item md={4}>
                     <PieChartBox />
                 </Grid>
-                <Grid item md={4} sm={12}>
-                    <Stack spacing={1}>
-                        {bioLoading ? ( // Updated condition to reflect loading state
-                            <SkeletonLoadingBio />
-                        ) : (
-                            <Bio initialBio={profileUser.bio} /> // Updated reference to new state name
-                        )}
-                        <ResearcherContact />
-                    </Stack>
-                </Grid>
-                <Grid item md={8} sm={12}>
-                   <Outlet/>
+                {!isPublicationsPath &&
+                    <Grid item md={4} sm={12}>
+                        <Stack spacing={1}>
+                            {bioLoading ? ( // Updated condition to reflect loading state
+                                <SkeletonLoadingBio />
+                            ) : (
+                                <Bio initialBio={profileUser.bio} /> // Updated reference to new state name
+                            )}
+                            <ResearcherContact />
+                        </Stack>
+                    </Grid>}
+                <Grid item md={isPublicationsPath ? 12 : 8} sm={12}>
+                    <Outlet />
                 </Grid>
             </Grid>
         </Container>

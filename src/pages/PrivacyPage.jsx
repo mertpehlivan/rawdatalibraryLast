@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/logo.svg'
 import { ForkLeft } from '@mui/icons-material'
-const PrivcyPage = () => {
+const PrivacyPage = () => {
     return (
         <Container>
             <Paper >
@@ -89,4 +89,4 @@ const PrivcyPage = () => {
     )
 }
 
-export default PrivcyPage
+export default PrivacyPage

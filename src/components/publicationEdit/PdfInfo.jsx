@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Stack, Typography, Divider, IconButton } from '@mui/material';
 import { PictureAsPdf, Download, Public, PublicOff, Error, Edit } from '@mui/icons-material';
 
-const PDFInfo = ({ publication, handleDownload, setStep, edit = false,handleEdit }) => {
+const PDFInfo = ({ publication, handleDownload, setStep, edit = false, handleEdit }) => {
     const pdfStatus = publication?.pdfFileResponse?.only || publication?.pdf?.only;
 
     return (
@@ -10,11 +10,11 @@ const PDFInfo = ({ publication, handleDownload, setStep, edit = false,handleEdit
             <Stack spacing={2} sx={{ p: 2 }}>
                 <Stack direction="row" justifyContent="space-between">
                     <Typography variant="h5" color="primary.main"><b>PDF Info</b></Typography>
-                   
-                        <IconButton onClick={edit ? ()=>{handleEdit("PDF_INFO")} : () => setStep(3)}>
-                            <Edit />
-                        </IconButton>
-                    
+
+                    <IconButton onClick={edit ? () => { handleEdit("PDF_INFO") } : () => setStep(3)}>
+                        <Edit />
+                    </IconButton>
+
                 </Stack>
                 <Stack width="100%">
                     <Stack
@@ -32,7 +32,7 @@ const PDFInfo = ({ publication, handleDownload, setStep, edit = false,handleEdit
                             <Stack alignItems="center">
                                 <Error color='error' sx={{ fontSize: 40 }} />
                                 <Typography color="error">
-                                    <b>No PDF available. Your PDF file has not been uploaded. Uploading it is entirely up to you.</b>
+                                    <b>PDF file has not been uploaded.</b>
                                 </Typography>
                             </Stack>
                         ) : (
