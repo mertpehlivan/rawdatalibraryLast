@@ -41,7 +41,7 @@ const PublicationInfo = ({ publication, comment, references, setStep, edit = fal
                                         <Stack>
                                             <Typography color="primary.main"><b>{formattedKey}:</b></Typography>
                                             {formattedKey.startsWith("Link") ? (
-                                                <a target='_blank' href={publication.data[key]}><Typography>{` ${publication.data[key].slice(0, 50)}...`}</Typography></a>
+                                                <a target='_blank' href={publication.data[key]}><Typography>{` ${publication.data[key]?.slice(0, 50)}...`}</Typography></a>
                                             ) : (
                                                 <Typography>{` ${publication.data[key]}`}</Typography>
                                             )}

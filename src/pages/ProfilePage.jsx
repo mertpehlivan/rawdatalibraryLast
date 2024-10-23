@@ -29,7 +29,6 @@ const ProfilePage = () => {
             setProfileBarLoading(true);
             try {
                 const userResponse = await findByIdToGetUserResponse(token, userId);
-                console.log(userResponse);
                 setProfileUser(userResponse); // Updated reference to new state name
             } catch (err) {
                 setError("Failed to fetch user data.");

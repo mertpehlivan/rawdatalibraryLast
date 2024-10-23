@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Stack, Avatar, Typography, IconButton } from '@mui/material';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import { getProfileImage } from '../../services/imageServices';
-const UserProfileComponent = ({ user, avatarSize = 90, nameVariant = 'h6', bioSize = 'body1'}) => {
+const UserProfileComponent = ({ user, avatarSize = 90, nameVariant = 'h6', bioSize = 'body1' }) => {
     const [image, setImage] = useState(null);
     const [loading, setLoading] = useState(true); // State to track loading
     const [editedUser, setEditedUser] = useState({ ...user });
@@ -44,7 +44,6 @@ const UserProfileComponent = ({ user, avatarSize = 90, nameVariant = 'h6', bioSi
             const parts = string.split("-");
             if (parts.length > 1) {
                 const result = parts[1].toLowerCase();
-                console.log(result);
                 return result;
             }
         }
@@ -55,7 +54,13 @@ const UserProfileComponent = ({ user, avatarSize = 90, nameVariant = 'h6', bioSi
             <Avatar
                 alt={`${user.firstname} ${user.lastname}`}
                 src={image}
-                sx={{ width: avatarSize, height: avatarSize, boxShadow: 5, border: '3px solid', borderColor: 'primary.main' }}
+                sx={{
+                    width: avatarSize ? `${avatarSize}px` : '100px', // Default to 100px if avatarSize is undefined
+                    height: avatarSize ? `${avatarSize}px` : '100px', // Default to 100px if avatarSize is undefined
+                    boxShadow: 5,
+                    border: '3px solid',
+                    borderColor: 'primary.main',
+                }}
             />
             <Stack>
 

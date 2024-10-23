@@ -13,7 +13,7 @@ export const PostComment = ({ comment, maxLength = 155, variant = 'h6' }) => {
   return (
     <Stack>
       <Typography
-        variant={variant}
+        variant={`${variant}`}
         color="gray"
       >
         {expanded ? comment : displayComment}

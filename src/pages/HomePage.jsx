@@ -9,7 +9,7 @@ import FilterMenu from '../components/homePage/FilterMenu';
 const HomePage = () => {
     return (
 
-        <Container maxWidth>
+        <Container maxWidth="xl">
             <Stack pt={1} >
                 <Grid container spacing={1}>
                     <Grid item sm={12} md={2.5}>

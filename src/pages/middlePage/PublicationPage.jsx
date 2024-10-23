@@ -209,7 +209,7 @@ const PublicationPage = () => {
                       <ListItemIcon>
                         <Stack alignItems="center" justifyContent="center">
                           {publications.find(p => p.value === pub.type)?.icon || <ArticleIcon />}
-                          <Typography>{pub.year || getYearFromDate(pub.date)}</Typography>
+                          <Typography>{pub.year || getYearFromDate(pub.date) || pub.completedDate ? getYearFromDate(pub.completedDate): "(continue)"} </Typography>
                         </Stack>
                       </ListItemIcon>
                       <ListItemText
