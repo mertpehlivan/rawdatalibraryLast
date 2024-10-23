@@ -8,6 +8,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Appbar from '../components/Appbar';
 import axios from 'axios';
 import NoAuthBar from '../components/NoAuthBar';
+import Footer from '../components/Footer';
 
 const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
@@ -86,6 +87,7 @@ const AuthProvider = ({ children }) => {
       <>
         {authenticated ? <Appbar /> : <NoAuthBar/>}
         <AuthRoutes />
+        <Footer/>
       </>
     </UserContext.Provider>
   );

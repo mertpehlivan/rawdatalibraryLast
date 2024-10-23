@@ -153,7 +153,7 @@ export default function SignUpPage() {
                     </Stack>
                 </Grid>
             </Grid>
-            <Footer />
+            
         </Container>
     );
 }

@@ -20,10 +20,6 @@ import ImageSeven from '../assets/7.gif'
 import ImageEight from '../assets/8.gif'
 import ImageNine from '../assets/9.gif'
 import ImageTen from '../assets/10.gif'
-import Footer from '../components/Footer';
-import MainImage from '../assets/end2.svg'
-import NoAuthBar from '../components/NoAuthBar'
-import axios from 'axios';
 import Conferences1 from '../assets/Civil Engineering Congress 2025_Call for Abstracts_1350x420.jpg'
 import Conferences2 from '../assets/Civil Engineering Congress 2025_Home Banner1350x420 (1).jpg'
 import Razaqpur from '../assets/GhaniRazaqpur.jpg'
@@ -34,9 +30,7 @@ import CharlesImage from '../assets/charles.jpg'
 import HamidImage from '../assets/hamid.jpg'
 import JiHuanImage from '../assets/jihuan.jpg'
 import TimothyImage from '../assets/timothy.jpg'
-import MyChart from '../components/MyChart'
 import MainPagePost from '../components/publicationPosts/MainPagePost';
-const baseUrl = process.env.REACT_APP_BASE_URL;
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -801,7 +795,7 @@ const MainPage = () => {
           </Grid>
         </Container>
       </Stack>
-      <Footer />
+   
     </Stack >
   );
 };
