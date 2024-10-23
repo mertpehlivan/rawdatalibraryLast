@@ -82,7 +82,7 @@ const MainPage = () => {
     <Stack spacing={2}>
       <Stack spacing={3} sx={{ animation: `${fadeIn} 2s ease-in-out` }}>
         {process.env.PUBLIC_URL.toString()}
-        <Container maxWidth>
+        <Container maxWidth="xl">
           <div id="back-to-top-anchor" />
           <Grid container sx={{ mt: 3 }} alignItems="center" mb={3}>
             <Grid item xs={12}>
@@ -165,7 +165,7 @@ const MainPage = () => {
                 )}
               </Grid>
 
-              
+
             </Grid>
           </Grid>
         </Container>
@@ -182,30 +182,32 @@ const MainPage = () => {
                   <img src={Disc} width={240} />
                   <Typography color="primary" variant='h5' mb={2}> <b>Presentation and Discussion of Multiple Outputs</b></Typography>
                   <Typography variant='h6'>
-                    More than one output is obtained from an academic study. In published articles, generally some of them can be presented and discussed. In some of the related publications, outputs are only mentioned, but no data are presented.
+                    Scientific research produces multiple outputs. However, published studies typically present and discuss only a
+                    subset of these outputs, and often do not include raw data and models.
                   </Typography>
                 </Grid>
                 <Grid item md={3} sm={12}>
                   <img src={Usablity} width={240} />
                   <Typography color="primary" variant='h5' mb={2}><b>Presentation and Reusability of Data</b></Typography>
                   <Typography variant='h6'>
-
-                    In the published articles, the data are presented as a summarized table or graphically. This makes it difficult to reuse the data by other researchers.
+                    In published studies, raw data and numerical models are often presented as summarised tables or graphs. This
+                    format makes it difficult for other researchers to reuse the data and models.
                   </Typography>
                 </Grid>
                 <Grid item md={3} sm={12} >
                   <img src={Aricle} width={240} />
                   <Typography color="primary" variant='h5' mb={2}> <b>Page Limitations and Presentation of Outputs</b></Typography>
                   <Typography variant='h6' >
-
-                    Many of the outputs mentioned in the relevant articles (for example: graphical representations) cannot be presented due to the page limit. It may not be possible to present survey data or provide graphs of all the results.
+                    Many of the outputs mentioned in the articles (e.g. graphs) cannot be presented due to page limitations. It may
+                    not be possible to present survey data or provide graphs of all results.
                   </Typography>
                 </Grid>
                 <Grid item md={3} sm={12}>
                   <img src={Paid} width={240} />
                   <Typography color="primary" variant='h5' mb={2}> <b>Establishment Purpose of RDL Platform</b></Typography>
                   <Typography variant='h6'>
-                    RDL platform was established to ensure that the data in the studies can be easily discovered and accessed and to offer academic incentives to researchers.
+                    The RDL platform has been established to ensure that the raw data and models from studies are easily
+                    discoverable and accessible, while also providing academic incentives for researchers.
                   </Typography>
                 </Grid>
               </Grid>
@@ -226,9 +228,17 @@ const MainPage = () => {
                     <Stack direction="row" p={3} spacing={2}>
                       <Stack>
                         <Typography color="primary" variant='h5'><b>Academic Research Incentive</b></Typography>
-                        <Typography variant='h6'><Check />The main purpose of the Raw Data Library is to contribute to the scientific world by providing easy access to Experimental Raw Data or Analytical Models by other researchers.</Typography>
-                        <Typography variant='h6'><Check />In this context, researchers who upload their Raw Data to the online system with their own consent provide their previously obtained raw data to the use of other researchers.</Typography>
-                        <Typography variant='h6'><Check />Data owners are financially supported for each of their data downloaded by other researchers.</Typography>
+                        <Typography variant='h6'><Check />
+                          The main purpose of the RDL platform is to contribute to the scientific community by providing easy access to
+                          experimental raw data and models for other researchers.
+                        </Typography>
+                        <Typography variant='h6'><Check />
+                          In this context, researchers who upload their raw data to the RDL online system with their consent allow other
+                          researchers to utilize their previously obtained raw data and models.
+                        </Typography>
+                        <Typography variant='h6'><Check />
+                          Data owners receive financial support for each dataset downloaded by other researchers.
+                        </Typography>
                       </Stack>
 
                     </Stack>
@@ -259,7 +269,10 @@ const MainPage = () => {
                 </Grid>
                 <Grid item md={6} sm={12}>
                   <Stack p={1}>
-                    <Typography color="primary" variant='h5'><b>Upload Your Data</b></Typography>
+                    <Typography color="primary" variant='h5'><b>
+                      The following data types can be uploaded to the RDL platform in various formats (e.g., Excel, .txt, .docx, .csv,
+                      .pdf, etc.) used in your research study:
+                    </b></Typography>
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Experimental data,</Typography>
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Survey data,</Typography>
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Analytical models,</Typography>
@@ -267,7 +280,6 @@ const MainPage = () => {
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Algorithms and methods,</Typography>
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Tabular Data,</Typography>
                     <Typography variant='h6'><FiberManualRecord sx={{ mr: 1, color: "primary.main" }} />Dataset,</Typography>
-                    <Typography variant='h6'>with all types of formats (e.g., excel, .txt, .docx .csv, .pdf and ext.) used in your research study.</Typography>
                   </Stack>
                 </Grid>
               </Grid>
@@ -284,7 +296,10 @@ const MainPage = () => {
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageOne} width={150} />
-                <Typography variant='h6'> Prevention of repetition of similar experimental test parameters and direct access to analytical modelling using software programs.</Typography>
+                <Typography variant='h6'>
+                  The RDL platform prevents the repetition of similar experimental studies and provides direct access to analytical
+                  and numerical models.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
@@ -296,41 +311,52 @@ const MainPage = () => {
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageThree} width={150} />
-                <Typography variant='h6'>More discussion opportunities and the development of more empirical or analytical models.</Typography>
+                <Typography variant='h6'>
+                  More opportunities for discussion and the development of experimental, empirical or
+                  analytical models are facilitated.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
 
-
-
                 <img src={ImageFour} width={150} />
-                <Typography variant='h6'>More citation opportunities.</Typography>
-
+                <Typography variant='h6'>
+                  More citation opportunities are provided.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageFive} width={150} />
-                <Typography variant='h6'> Easy validations of previous data.</Typography>
+                <Typography variant='h6'>
+                  Easy validation of previous data is provided.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageSix} width={150} />
-                <Typography variant='h6'> Sharing of other data mentioned but not presented in the article.,</Typography>
+                <Typography variant='h6'>
+                  Sharing of additional data mentioned but not presented in the article is also facilitated.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageSeven} width={150} />
-                <Typography variant='h6'>Access to modelling of FEM, ABAQUS, ANSYS, SAP 2000, Solid Works and other computer modelling and documents.</Typography>
+                <Typography variant='h6'>
+                  Access to modeling tools such as FEM, ABAQUS, ANSYS, SAP 2000, SolidWorks, and other computer
+                  modeling software and documents is provided.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageEight} width={150} />
-                <Typography variant='h6'>Authors can track the number of times their data has been downloaded from their own profile page.</Typography>
+                <Typography variant='h6'>
+                  Authors can track how many times their data has been downloaded from their profile page.
+                </Typography>
               </Paper>
             </Grid>
             <Grid item md={2.4} sm={12} mb={3}>
@@ -342,7 +368,9 @@ const MainPage = () => {
             <Grid item md={2.4} sm={12} mb={3}>
               <Paper sx={{ p: 2, height: "100%" }}>
                 <img src={ImageTen} width={150} />
-                <Typography variant='h6'> Payment information is uploaded to the profile page of each data owner and data owners can track their income.</Typography>
+                <Typography variant='h6'>
+                  Payment information is uploaded to each data owner&#39;s profile page, allowing them to track their income.
+                </Typography>
               </Paper>
             </Grid>
           </Grid>
@@ -357,9 +385,11 @@ const MainPage = () => {
                 Intellectual Property Rights of Raw Data
               </Typography>
               <Typography variant='h6'>
-                Nowadays, journal publishers establish different journals that focus only on the data of articles published in other journals. Unless the processed data presented in
-                research studies are presented as raw data in a journal and the author is not paid for their rights,
-                the ownership and legal rights of the raw data belong to the researchers.
+                Nowadays, journal publishers establish different journals that focus
+                only on the data of articles published in other journals. Unless the
+                processed data presented in research studies are presented as raw data
+                in a journal and the author is not paid for their rights, the ownership
+                and legal rights of the raw data belong to the researchers.
               </Typography>
             </Stack>
           </Paper>

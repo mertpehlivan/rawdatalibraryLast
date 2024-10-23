@@ -14,9 +14,7 @@ const PostShareByUser = ({ shareByAuthor }) => {
         const imageBlob = await getProfileImage(shareByAuthor.id);
         const imageObjectUrl = URL.createObjectURL(imageBlob);
         setImage(imageObjectUrl);
-        console.log(imageObjectUrl)
       } catch (error) {
-        console.error('Error fetching image:', error);
       } finally {
         setLoading(false); // Stop loading
       }

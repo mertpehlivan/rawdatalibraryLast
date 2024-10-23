@@ -43,7 +43,7 @@ const PostAuthors = ({ authors }) => {
           return newUrls;
         });
       } catch (error) {
-        console.error(`Error fetching image for author ${author.id}:`, error);
+       
         setImageUrls((prevUrls) => {
           const newUrls = [...prevUrls];
           newUrls[index] = fallbackImage; // Use fallback image if fetching fails

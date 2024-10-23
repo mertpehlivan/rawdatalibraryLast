@@ -15,7 +15,6 @@ const Post = ({ data, publicStatus = false }) => {
 
   const getTimeElapsed = (time) => {
     if (!time || isNaN(new Date(time))) {
-        console.error('Invalid time:', time);
         return null; // Geçersiz zaman durumunda uygun bir geri dönüş
     }
 

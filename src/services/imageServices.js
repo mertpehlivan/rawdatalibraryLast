@@ -9,7 +9,7 @@ export const getRawDataImage = async (rawDataId) => {
     });
     return response.data; // Return the blob (binary data)
   } catch (error) {
-    console.error('Error fetching raw data image:', error);
+    
     throw error;
   }
 };
@@ -20,7 +20,7 @@ export const getProfileImage = async (userId) => {
     });
     return response.data; // Return the blob (binary data)
   } catch (error) {
-    console.error('Error fetching raw data image:', error);
-    throw error;
+    console.error(`Profile image not found for user ${userId}. Error:`, error);
+    return null; // Return null if the image is not found
   }
 };

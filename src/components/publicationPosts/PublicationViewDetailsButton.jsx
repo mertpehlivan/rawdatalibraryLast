@@ -3,8 +3,7 @@ import { Button, Stack } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function PublicationViewDetailsButton({ areYouACoAuthor,publicationId }) {
-    console.log(publicationId)
+function PublicationViewDetailsButton({ areYouACoAuthor,publicationId }) {  
     return (
         <Stack>
             {areYouACoAuthor && (
