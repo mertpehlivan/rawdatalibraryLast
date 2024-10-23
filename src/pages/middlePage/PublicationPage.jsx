@@ -56,7 +56,7 @@ const PublicationPage = () => {
     const publication = publications.find(pub => pub.value === type);
     if (!publication) return;
 
-    setLoading(!isSizeLoading); 
+    setLoading(!isSizeLoading);
     try {
       const response = await axios.get(`${baseUrl}/api/v1/publication${publication.endpoint}`, {
         params: {
@@ -79,7 +79,7 @@ const PublicationPage = () => {
       setPublicationsData([]);
     } finally {
       setLoading(false);
-      setIsSizeLoading(false); 
+      setIsSizeLoading(false);
     }
   };
 
@@ -115,7 +115,7 @@ const PublicationPage = () => {
   function getYearFromDate(dateString) {
     // Tarih stringini kontrol et
     if (typeof dateString !== 'string' || !dateString) {
-         return
+      return
     }
 
     // Tarih stringini parçala
@@ -123,11 +123,11 @@ const PublicationPage = () => {
 
     // Yıl kısmını döndür
     if (parts.length === 3) {
-        return parts[0]; // Yıl kısmı
+      return parts[0]; // Yıl kısmı
     } else {
       return;
     }
-}
+  }
 
   return (
     <Grid container spacing={2}>
@@ -177,7 +177,7 @@ const PublicationPage = () => {
                       onChange={(e) => {
                         setSelectedSize(e.target.value);
                         setCurrentPage(1);
-                        setIsSizeLoading(true); 
+                        setIsSizeLoading(true);
                       }}
                       variant="outlined"
                       displayEmpty
@@ -192,7 +192,7 @@ const PublicationPage = () => {
                         All ({allPublicationSize})
                       </MenuItem>
                     </Select>
-                    {isSizeLoading && <CircularProgress size={24} />} 
+                    {isSizeLoading && <CircularProgress size={24} />}
                     <Typography>{publicationsData.length}/ {allPublicationSize} publications found.</Typography>
                   </Stack>
                   {publicationsData.map((pub) => (
@@ -209,7 +209,15 @@ const PublicationPage = () => {
                       <ListItemIcon>
                         <Stack alignItems="center" justifyContent="center">
                           {publications.find(p => p.value === pub.type)?.icon || <ArticleIcon />}
-                          <Typography>{pub.year || getYearFromDate(pub.date) || pub.completedDate ? getYearFromDate(pub.completedDate): "(continue)"} </Typography>
+                          <Typography>
+                            {pub.year
+                              ? pub.year
+                              : pub.date
+                                ? getYearFromDate(pub.date)
+                                : pub.completedDate
+                                  ? getYearFromDate(pub.completedDate)
+                                  : "(continue)"}
+                          </Typography>
                         </Stack>
                       </ListItemIcon>
                       <ListItemText
