@@ -38,7 +38,6 @@ const PieChartBox = ({ publicStatus = false }) => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-            console.log(response.data)
             setData(response.data); // Assuming the response returns publication counts
             setData([
                 { id: 0, value: response.data.articleCount, label: "Article" },

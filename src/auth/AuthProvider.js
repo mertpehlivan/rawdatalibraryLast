@@ -36,7 +36,6 @@ const AuthProvider = ({ children }) => {
             , {
               headers: { "Authorization": `Bearer ${token}` }
             });
-          console.log(response.data)
           handleAuth(response.data)
         } catch {
           localStorage.clear()
